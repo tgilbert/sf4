@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 final class PlaylistAdmin extends AbstractAdmin
 {
@@ -24,6 +25,7 @@ final class PlaylistAdmin extends AbstractAdmin
         $listMapper
 			->add('id')
 			->add('lib')
+            ->add('imageName', null, array('label' => 'Images', 'template' => 'admin/fields/image.html.twig') )
 			->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -36,8 +38,8 @@ final class PlaylistAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-			->add('id')
 			->add('lib')
+            ->add('imageFile', VichFileType::class)
 			;
     }
 
