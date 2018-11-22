@@ -2,7 +2,7 @@
 
 {% block field%}
     {% if object.imageName  %}
-         <img src="{{ vich_uploader_asset(object, 'imageFile') }}" alt="{{ object.imageName }}" />
+         <img src="{{ vich_uploader_asset(object, 'imageFile') | imagine_filter('thumb') }}" alt="{{ object.imageName }}" />
          <a href="{{ vich_uploader_asset(object, 'imageFile') }}" alt="{{ object.imageName }}">Download</a>
     {% endif %}
 {% endblock %}
