@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('rangepicker') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script>
+            window.globalVars = {
+                admin: "{{ path('sonata_admin_redirect') }}",
+                homesave: "{{ path('home_save')}}"
+            }
+            </script>
+            <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+            {{ encore_entry_script_tags('vue') }}
+        {% endblock %}
+    </body>
+</html>

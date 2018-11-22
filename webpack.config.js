@@ -1,6 +1,7 @@
 var Encore = require('@symfony/webpack-encore');
 
 Encore
+    .enableSassLoader()
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
@@ -18,6 +19,8 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('rangepicker', './assets/css/rangepicker.scss')
+    .addEntry('vue', './assets/js/vue.js')
     //.addEntry('app', './assets/css/app.scss')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
@@ -25,7 +28,7 @@ Encore
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
-
+    .enableVueLoader()
     /*
      * FEATURE CONFIG
      *

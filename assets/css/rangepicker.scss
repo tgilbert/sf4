@@ -1,0 +1,79 @@
+ .rangepicker * {
+     box-sizing: border-box;
+ }
+
+ .rangepicker {
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+ }
+
+ .rangepicker_month {
+     max-width: 20%;
+     background-color: #fff;
+     border: 1px solid #a6a6a6;
+ }
+
+.rangepicker_monthtitle {
+    height: 64px;
+    line-height: 64px;
+    text-align: center;
+    background-color: #455399;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    border: 1px solid #a6a6a6;
+}
+
+.rangepicker_days {
+    height: 30px;
+    color: #b7c1cd;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.rangepicker_numbers {
+    user-select: none;
+    display: flex;
+    flex-wrap: wrap;
+    color: #2b2e49;
+    line-height: 48px;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.rangerpicker_day {
+    width: 14.28%;
+    margin-bottom: 2px;
+}
+
+.rangepicker_out {
+    opacity: 0.5;
+}
+
+.rangepicker_range {
+    color: #FFF;
+    background-color: #00c6ae;
+}
+
+.rangepicker_newrange {
+    color: #FFF;
+    background-color: #455399;
+}
+
+.rangepicker_range-start {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.rangepicker_range-end {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
