@@ -33,7 +33,7 @@ export default class Ranges {
   }
   toTimestamps () {
     return this.ranges.map(range => {
-      return [range.getStart().getTime(), range.getEnd().getTime()]
+      return [range.getStart().getTime()/1000, range.getEnd().getTime()/1000]
     })
   }
   static fromTimestamps (ranges) {

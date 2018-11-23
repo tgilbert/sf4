@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <div class="rangepicker">
-        <div class="rangerpicker_month" v-for="month in months" :key="month.index">
+        <div class="rangepicker_month" v-for="month in months" :key="month.index" @reload>
             <div class="rangepicker_monthtitle">
                 {{ month.getName() }}
             </div>
@@ -18,7 +18,6 @@
                 <div class="rangerpicker_day"
                      @mousedown="startDrag(day)"
                      @mouseover="overDay(day)"
-                     @mouseup="endDrag()"
                      @dblclick="deleteZone(day)"
                      v-for="day in month.getDays()" :key="day.index"
                      :class="classForDay(day, month, newRange)">
@@ -52,6 +51,7 @@ export default {
   mounted () {
     this.ranges = Ranges.fromTimestamps(this.value)
     this.months = Month.createMonthsForYear(this.year)
+    document.addEventListener('mouseup', this.onRelease)
   },
   props: {
     year: Number,
@@ -120,8 +120,10 @@ export default {
         }
       }
     },
-    endDrag () {
-      this.ranges.addRange(this.newRange)
+    onRelease () {
+      if (this.newRange) {
+        this.ranges.addRange(this.newRange)
+      }
       this.newRange = null
     },
     deleteZone (day) {
@@ -136,6 +138,9 @@ export default {
     submit () {
       this.$emit('input', this.ranges.toTimestamps())
       this.$emit('submit')
+    },
+    reload () {
+      console.log('in')
     }
   }
 }

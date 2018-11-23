@@ -41,6 +41,7 @@
 
 .rangepicker_numbers {
     user-select: none;
+    -webkit-user-select : none;
     display: flex;
     flex-wrap: wrap;
     color: #2b2e49;

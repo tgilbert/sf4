@@ -1,11 +1,18 @@
 {% extends 'base-vue.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
-
 {% block body %}
     <a href="{{ path('sonata_admin_redirect')}}">Admin</a>
-    <div id="app">
-        <app>
-        </app>
+    <div class="">
+        <div id="app">
+            <app>
+            </app>
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.rangersBD = {{ dates }}
+    </script>
+    {{ parent() }}
 {% endblock %}

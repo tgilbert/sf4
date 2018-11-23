@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    {{ ranges }}
+    <button @click="prevYear"><</button>
+    {{ year }}
     <button @click="pickerShow">Afficher le calendrier</button>
-    <button @click="admin">Admin</button>
     <button @click="save">Save</button>
+    <button @click="nextYear">></button>
     <div v-if="isPickerVisible" style="position: static;top: 0;left: 0;right: 0;bottom: 0;overflow: scroll;">
-      <range-picker :year="2018" v-model="ranges" @cancel="pickerHide" @submit="pickerHide"/>
+      <range-picker :key="year" :year=year v-model="ranges" @cancel="pickerHide" @submit="pickerHide"/>
     </div>
   </div>
 </template>
@@ -19,7 +20,14 @@ export default {
   data () {
     return {
       isPickerVisible: false,
-      ranges: [ [ 1520636400, 1525880015 ], [ 1543100400, 1545064415 ] ]
+      ranges: [],
+      year: 2018
+    }
+  },
+  mounted () {
+    this.ranges = window.rangersBD
+    if (this.ranges.length == 0) {
+      this.ranges = [ [ 1519945200, 1519945200 ], [ 1517180400, 1518649200 ] ]
     }
   },
   components: {
@@ -32,13 +40,17 @@ export default {
     pickerHide () {
       this.isPickerVisible = false
     },
-    admin () {
-      let r = Routing.generate('home_save', { date: this.ranges })
-      console.log(Routing.generate('home_save', { date: this.ranges }))
-      location.href = r
+    prevYear () {
+      this.year = this.year-1
+      this.$emit('reload')
+    },
+    nextYear () {
+      this.year = this.year+1
+      this.$emit('reload')
     },
     save () {
-      location.href = window.globalVars.homesave
+      let r = Routing.generate('home_save', { date: this.ranges })
+      location.href = r
     }
   }
 }
